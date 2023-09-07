@@ -1,0 +1,156 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*Navbar*/
+
+.navbar-brand {
+    margin-left: 70px;
+}
+
+.button-logout {
+    margin-right: 70px;
+}
+
+
+.button-primary {
+    width: 90px;
+    height: 39px;
+    background-color: #2C5871;
+    color: #fff;
+    border-radius: 14px;
+    border-color: transparent;
+    font-weight: 600;
+}
+
+.button-secondary {
+    width: 120px;
+    height: 39px;
+    background-color: #4BCDD6;
+    color: #fff;
+    border-radius: 14px;
+    border-color: transparent;
+    font-weight: 600;
+}
+
+#hero {
+    background: linear-gradient(360deg, #4BCDD6 -0.79%, #FFFFFF 52.99%);
+    width: auto;
+    height: auto;
+    padding: 108px;
+    padding-top: ;
+    padding-bottom: ;
+}
+
+.hero-tagline h1 {
+    color: #2C5871;
+    font-weight: 700;
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+.aspirasi {
+    border-radius: 20px;
+}
+
+.form-floating {
+    width: 500px;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+.button-send {
+    width: auto;
+    height: auto;
+    background: #2C5871;
+    border-radius: 15px;
+    border-color: transparent;
+}
+
+.form-select {
+    width: 500px;
+    height: 40px;
+    background: #2C5871;
+    color:#FFFFFF;
+    font-family: 'Montserrat';
+    border-radius: 15px;
+    -webkit-text-fill-color: #FFFFFF;
+}
+
+.text {
+  color: #2C5871;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.form-control {
+    width: 900px;
+    height: 150px;   
+    background: #FFFFFF;
+    color: #2C5871;
+    border-radius: 15px;
+    border-color: transparent;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    box-shadow: 10px 10px 25px
+    rgba(0, 0, 0, 0.05);
+}
+
+/*Popup*/
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup {
+    margin-bottom: 159px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    width: 30%;
+    position: relative;
+    top: 30%;
+    transition: all 5s ease-in-out;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    font-weight: 700    ;
+    color: #2C5871;
+    font-family: 'Montserrat';
+  }
+  .popup .close {
+    transition: all 200ms;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+  .popup .close:hover {
+    color: #FFFFFF;
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+
+  .button-ok {
+    width: 250px;
+    background: #2C5871;
+    border-radius: 15px;
+    border-color: transparent;
+    text-align: center;
+}
+  

@@ -1,0 +1,118 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*Navbar*/
+
+.button-primary {
+    width: 90px;
+    height: 39px;
+    background-color: #2C5871;
+    color: #fff;
+    border-radius: 14px;
+    border-color: transparent;
+    font-weight: 600;
+}
+
+.button-secondary {
+    width: 120px;
+    height: 39px;
+    background-color: #4BCDD6;
+    color: #fff;
+    border-radius: 14px;
+    border-color: transparent;
+    font-weight: 600;
+}
+
+/*Hero Section*/
+
+#hero {
+    background: linear-gradient(160deg, #4BCDD6 -0.79%, #FFFFFF 52.99%);
+    width: auto;
+    height: 785px;
+}
+
+.hero-tagline h1 {
+    color: #2C5871;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+.hero-tagline p {
+    font-weight: 400;
+    font-size: 20px;
+    width: 85%;
+    margin-top: 25px;
+    margin-bottom: 60px;
+}
+
+/*Register Section*/
+
+#register {
+    background-color: #FFFFFF;    
+}
+
+.register-kiri {
+    background: linear-gradient(180deg, #72DCE3 0%, rgba(114, 220, 227, 0) 104%);
+    width:1;
+    height: 785px;
+}
+
+.register-tagline h1 {
+    color: #2C5871;
+    font-weight: 700;
+    font-size: 38px;
+    margin-top: 225px;
+}
+
+.register-tagline p{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 37px;
+    text-align: center;
+    color: #2C5871;
+}
+
+.login-btn {
+    width: 150px;
+    height: 51px;
+    left: 1012px;
+    top: 604px;
+    font-weight: 600;
+    font-size: 18px;
+    background: #4BCDD6;
+    border-radius: 87px;
+    border-color: transparent;
+  }
+
+  .btn-lg {
+    margin-top: 10px;
+    display: block;
+    width: 150px;
+    height: 51px;
+    background-color: #2C5871;
+    border-color: #FFFFFF;
+    border-radius: 87px;
+    border-color: transparent;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    text-transform: 0.5px;
+  }
+  
+  .btn-primary {
+    color: #fff;
+    background-color: #2C5871;
+    border-color: #2C5871;
+  }
+
+  .mb-3 {
+    width: 400px;
+    height: 39px;
+    margin: auto;
+    color: #FFFFFF;
+  }

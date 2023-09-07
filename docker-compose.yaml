@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    image: app-node:1.0.0
+    build:
+      context: .
+      dockerfile: dockerfile
+    
+    environment:
+      - MYSQL_HOST=mysql_server
+      - MYSQL_USER=ahmd
+      - MYSQL_PASSWORD=secret
+
+    ports:
+      - 3000:3000
+
+    networks:
+      - node-app-network
+
+    volumes:
+      - ./source:/app
+
+    depends_on:
+      - mysql_server
+  
+  mysql_server:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=test_db
+      - MYSQL_USER=ahmd
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret
+    networks:
+      - node-app-network
+
+networks:
+  node-app-network:

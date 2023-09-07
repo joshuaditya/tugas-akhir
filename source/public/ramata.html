@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--Font Montserrat Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <!--Style CSS-->
+    <link rel="stylesheet" href="css/aspirasi.css">
+
+    <!--Logo Title-->
+    <link rel="icon" href="image/Logo.png"
+    type="image/x-con">
+
+    <title>Kind of Aspiration</title>
+</head>
+
+<!--Navbar-->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="image/Logo RAMATA Horizontal.png" alt="" width="140" height="45">
+        </a>
+  </div>
+  <div class="button-logout" > 
+      <a href="login.html" class="btn btn-dark button-primary">Logout</a>
+    </div>
+</nav>
+
+<body>
+<!--Hero Section-->
+<section id="hero"> 
+  <br>
+  <center>
+  <form class="container gform pure-form pure-form-stacked" method="POST" data-email="ramata.aspirasi@gmail.com"
+  action="https://script.google.com/macros/s/AKfycbyOM-AJ9kcltrLOfykhcXOB5__Sb3BofvnX50TkdtNzL-LoopAU1Wr8aI_AFa3D79dZSg/exec">
+  <div class="row">
+    <div class="col-12 hero-tagline text-center">
+        <h1>Kind of Aspiration</h1>
+    </div>  
+
+    <div class="form-elements"><br>
+        <label for="exampleDataList" class="form-label text">Choose your type of aspiration</label>
+        <input type="text" name="Type Aspiration" class="form-select" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+        <datalist id="datalistOptions">
+          <option value="Facilities">
+          <option value="Security">
+          <option value="Academic">
+          <option value="Performance">
+          <option value="Overall">
+        </datalist><br><br>
+
+        <textarea type="text" name="Message" class="form-control" placeholder="Type your aspiration here" id="floatingTextarea2" style="resize: none;"></textarea>
+
+        <button class="btn btn-dark button-send mx-2"href="#popup1" >Send message
+          <img src="image/Send.png" class="mx-1" alt="" width="15px" height="15px"></button><br>
+      </div>
+    </div>
+
+    <!-- Thankyou_message --><br>
+    <div class="popup thankyou_message" style="display:none"><br>
+      <h2>Thanks You!</h2>
+      <p>Your aspiration has been succesfully submitted.</p>
+      <a class="close btn btn-dark button-ok" href="ramata.html">Close</a>
+    </div>
+  </form>
+</section>
+  
+  <script data-cfasync="false" type="text/javascript">
+
+
+   (function() {
+  function validEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+  }
+
+  function validateHuman(honeypot) {
+    if (honeypot) {
+      console.log("Robot Detected!");
+      return true;
+    } else {
+      console.log("Welcome Human!");
+    }
+  }
+  function getFormData(form) {
+    var elements = form.elements;
+
+    var fields = Object.keys(elements).filter(function(k) {
+          return (elements[k].name !== "honeypot");
+    }).map(function(k) {
+      if(elements[k].name !== undefined) {
+        return elements[k].name;
+      }else if(elements[k].length > 0){
+        return elements[k].item(0).name;
+      }
+    }).filter(function(item, pos, self) {
+      return self.indexOf(item) == pos && item;
+    });
+
+    var formData = {};
+    fields.forEach(function(name){
+      var element = elements[name];
+      formData[name] = element.value;
+      if (element.length) {
+        var data = [];
+        for (var i = 0; i < element.length; i++) {
+          var item = element.item(i);
+          if (item.checked || item.selected) {
+            data.push(item.value);
+          }
+        }
+        formData[name] = data.join(', ');
+      }
+    });
+
+    // add form-specific values into the data
+    formData.formDataNameOrder = JSON.stringify(fields);
+    formData.formGoogleSheetName = form.dataset.sheet || "Sheet1"; // default sheet name
+    formData.formGoogleSendEmail = form.dataset.email || ""; // no email by default
+
+    console.log(formData);
+    return formData;
+  }
+
+  function handleFormSubmit(event) {  
+    event.preventDefault();           
+    var form = event.target;
+    var data = getFormData(form);         
+    if( data.email && !validEmail(data.email) ) {   
+      var invalidEmail = form.querySelector(".email-invalid");
+      if (invalidEmail) {
+        invalidEmail.style.display = "block";
+        return false;
+      }
+    } else {
+      disableAllButtons(form);
+      var url = form.action;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', url);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onreadystatechange = function() {
+          console.log(xhr.status, xhr.statusText);
+          console.log(xhr.responseText);
+          var formElements = form.querySelector(".form-elements")
+          if (formElements) {
+            formElements.style.display = "none"; // hide form
+          }
+          var thankYouMessage = form.querySelector(".thankyou_message");
+          if (thankYouMessage) {
+            thankYouMessage.style.display = "block";
+          }
+          return;
+      };
+      var encoded = Object.keys(data).map(function(k) {
+          return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
+      }).join('&');
+      xhr.send(encoded);
+    }
+  }
+  
+  function loaded() {
+    console.log("Contact form submission handler loaded successfully.");
+    var forms = document.querySelectorAll("form.gform");
+    for (var i = 0; i < forms.length; i++) {
+      forms[i].addEventListener("submit", handleFormSubmit, false);
+    }
+  };
+  document.addEventListener("DOMContentLoaded", loaded, false);
+
+  function disableAllButtons(form) {
+    var buttons = form.querySelectorAll("button");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].disabled = true;
+    }
+  }
+})();
+
+
+  </script>
+</center>
+</body>
+</html>
