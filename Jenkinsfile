@@ -26,21 +26,10 @@ pipeline {
             }
         }
 
-    //     stage('Push Docker Image') {
-    //         steps {
-    //             script {
-    //                 docker.withRegistry('https://registry.example.com', 'registry-credentials') {
-    //                     dockerImageName.push("${env.BUILD_NUMBER}")
-    //                     dockerImageName.push("latest")
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
     post {
         success {
             echo 'The Docker image was successfully built.'
+            }
         }
     }
 }
