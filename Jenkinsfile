@@ -25,11 +25,11 @@ pipeline {
                 sh 'docker build -t nodeapp:latest .'
             }
         }
-
+    }
+    
     post {
         success {
             echo 'The Docker image was successfully built.'
-            }
         }
     }
 }
