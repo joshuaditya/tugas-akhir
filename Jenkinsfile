@@ -23,7 +23,7 @@ pipeline {
     
     post {
         success {
-            echo 'The Docker image was successfully built.'
+            echo 'The Docker image was successfully running on port 3000.'
         }
     }
 }
