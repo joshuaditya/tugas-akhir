@@ -13,6 +13,12 @@ pipeline {
                 sh 'docker build -t nodeapp:latest .'
             }
         }
+
+        stage('Run Docker Image'){
+            steps {
+                sh 'docker run -p 3000:3000 -d nodeapp:latest'
+            }
+        }
     }
     
     post {
