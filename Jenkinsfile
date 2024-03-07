@@ -7,7 +7,21 @@ pipeline {
                 checkout scm
             }
         }
-
+        stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=ramata-app \
+                    -Dsonar.projectKey=ramata-app '''
+                }
+            }
+        }
+        stage("quality gate"){
+           steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonar' 
+                }
+            } 
+        }
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t nodeapp:latest .'
