@@ -59,4 +59,4 @@ pipeline {
 
     // Remove the Docker image
 //    sh 'docker rmi nodeapp:latest'
-}
+//}
