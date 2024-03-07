@@ -7,11 +7,11 @@ pipeline {
                 checkout scm
             }
         }
-       stage("Sonarqube Analysis "){
-            steps{
-                withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=practice-docker \
-                    -Dsonar.projectKey=practice-docker '''
+        stage('SonarQube analysis') {
+            steps {
+                // Run SonarQube analysis
+                withSonarQubeEnv('SonarQube Server') {
+                    sh 'sonar-scanner' // Assuming 'sonar-scanner' is in your PATH
                 }
             }
         }
