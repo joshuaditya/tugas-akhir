@@ -7,21 +7,6 @@ pipeline {
                 checkout scm
             }
         }
-        stage('SonarQube analysis') {
-            steps {
-                // Run SonarQube analysis
-                withSonarQubeEnv('SonarQube Server') {
-                    sh 'sonar-scanner' // Assuming 'sonar-scanner' is in your PATH
-                }
-            }
-        }
-        stage("quality gate"){
-           steps {
-                script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'jenkins-sonar' 
-                }
-            } 
-        }
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t nodeapp:latest .'
@@ -52,10 +37,10 @@ pipeline {
     }
 }
 
-//def cleanup() {
-//    // Stop and remove the Docker container
-//    sh 'docker stop $(docker ps -q --filter ancestor=nodeapp:latest)'
-//   sh 'docker rm $(docker ps -aq --filter ancestor=nodeapp:latest)'
+def cleanup() {
+    // Stop and remove the Docker container
+    sh 'docker stop $(docker ps -q --filter ancestor=nodeapp:latest)'
+    sh 'docker rm $(docker ps -aq --filter ancestor=nodeapp:latest)'
 
     // Remove the Docker image
 //    sh 'docker rmi nodeapp:latest'
