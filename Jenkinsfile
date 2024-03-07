@@ -9,7 +9,7 @@ pipeline {
         }
        stage("Sonarqube Analysis "){
             steps{
-                //withSonarQubeEnv('sonar-server') {
+                withSonarQubeEnv('sonar-server') {
                     sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=practice-docker \
                     -Dsonar.projectKey=practice-docker '''
                 }
