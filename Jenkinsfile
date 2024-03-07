@@ -7,14 +7,14 @@ pipeline {
                 checkout scm
             }
         }
-//       stage("Sonarqube Analysis "){
-//            steps{
-//                //withSonarQubeEnv('sonar-server') {
-//                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=practice-docker \
-//                    -Dsonar.projectKey=practice-docker '''
-//                }
-//            }
-//        }
+       stage("Sonarqube Analysis "){
+            steps{
+                //withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=practice-docker \
+                    -Dsonar.projectKey=practice-docker '''
+                }
+            }
+        }
         stage("quality gate"){
            steps {
                 script {
@@ -52,11 +52,11 @@ pipeline {
     }
 }
 
-def cleanup() {
-    // Stop and remove the Docker container
-    sh 'docker stop $(docker ps -q --filter ancestor=nodeapp:latest)'
-    sh 'docker rm $(docker ps -aq --filter ancestor=nodeapp:latest)'
+//def cleanup() {
+//    // Stop and remove the Docker container
+//    sh 'docker stop $(docker ps -q --filter ancestor=nodeapp:latest)'
+//   sh 'docker rm $(docker ps -aq --filter ancestor=nodeapp:latest)'
 
     // Remove the Docker image
-    sh 'docker rmi nodeapp:latest'
+//    sh 'docker rmi nodeapp:latest'
 }
