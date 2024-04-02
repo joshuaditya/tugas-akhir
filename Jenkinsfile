@@ -15,7 +15,7 @@ pipeline {
 
         stage('Run Docker Image'){
             steps {
-                sh 'docker run -p 3000:3000 -d nodeapp:latest'
+                sh 'docker build --no-cache -t nodeapp:latest .'
             }
         }
 
