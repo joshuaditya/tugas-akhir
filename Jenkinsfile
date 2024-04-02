@@ -13,11 +13,12 @@ pipeline {
             }
         }
 
-        stage('Run Docker Image'){
+        stage('Run Docker Image') {
             steps {
                 sh 'docker run -p 3000:3000 -d ramata:latest'
             }
         }
+    }
 
     post {
         success {
@@ -31,10 +32,10 @@ pipeline {
 }
 
 def cleanup() {
-    // Stop and remove the Docker container
-    sh 'docker stop $(docker ps -q --filter ancestor=nodeapp:latest)'
-    sh 'docker rm $(docker ps -aq --filter ancestor=nodeapp:latest)'
+    // Correct the Docker container and image names in the cleanup steps to match 'ramata:latest'
+    sh 'docker stop $(docker ps -q --filter ancestor=ramata:latest)'
+    sh 'docker rm $(docker ps -aq --filter ancestor=ramata:latest)'
 
-    // Remove the Docker image
-//    sh 'docker rmi nodeapp:latest'
+    // Uncomment this if you want to remove the Docker image as well
+    sh 'docker rmi ramata:latest'
 }
