@@ -28,18 +28,4 @@ jobs:
       - name: Success Message
         run: echo 'The Docker image was successfully running on port 3000.'
 
-    # GitHub Actions doesn't support a direct equivalent to Jenkins' post section,
-    # but you can use job outputs, steps.if, and job-level if conditions to manage cleanup.
-    # Below is a simple approach to always attempt cleanup, even if previous steps fail.
-    # Adjust according to your needs.
-    cleanup:
-      if: always()
-      needs: build-and-run
-      runs-on: ubuntu-latest
-      steps:
-        - name: Cleanup
-          run: |
-            docker stop $(docker ps -q --filter ancestor=ramata:latest)
-            docker rm $(docker ps -aq --filter ancestor=ramata:latest)
-            docker rmi ramata:latest
-          continue-on-error: true
+    
