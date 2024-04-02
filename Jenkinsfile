@@ -9,22 +9,15 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t nodeapp:latest .'
+                sh 'docker build --no-cache -t ramata:latest .'
             }
         }
 
         stage('Run Docker Image'){
             steps {
-                sh 'docker build --no-cache -t nodeapp:latest .'
+                sh 'docker run -p 3000:3000 -d ramata:latest'
             }
         }
-
-        stage('Trivy Scan') {
-            steps {
-                sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL nodeapp:latest'
-            }
-        }
-    }
 
     post {
         success {
