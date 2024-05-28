@@ -15,16 +15,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Clean Up Old Docker Image
+        run: |
+          docker stop $(docker ps -q --filter ancestor=ramata:latest) || true
+          docker rm $(docker ps -aq --filter ancestor=ramata:latest) || true
+          docker rmi ramata:latest || true
+
       - name: Build Docker Image
         run: docker build --no-cache -t ramata:latest .
 
-      # This step demonstrates running the Docker image,
-      # but in a CI environment, you might deploy or test instead.
       - name: Run Docker Image
         run: docker run -p 3000:3000 -d ramata:latest
 
-      # This step shows how to echo a success message.
-      # GitHub Actions automatically shows failure messages if a step fails.
       - name: Success Message
         run: echo 'The Docker image was successfully running on port 3000.'
-
