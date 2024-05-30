@@ -42,7 +42,3 @@
 ## and stop using
 
     docker-compose down
-
-## testing
-
-    this is testing 
